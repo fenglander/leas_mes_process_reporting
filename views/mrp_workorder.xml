@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- MRP.WORKORDER TABLET VIEW -->
+        <record id="mrp_workorder_view_form_tablet" model="ir.ui.view">
+            <field name="name">mrp.workorder.view.form.tablet.new</field>
+            <field name="model">mrp.workorder</field>
+            <field name="arch" type="xml">
+                <form string="Production Workcenter" delete="0" create="0" class="leas-tablet" js_class="workorder_tablet_viewer">
+                    <script>
+                        function navigateBack() {
+                            history.back();
+                        }
+                    </script>
+                    <field name="company_id" invisible="1"/>
+                    <field name="leave_id" invisible="1"/>
+                    <field name="is_user_working" invisible="1"/>
+                    <field name="date_planned_start" invisible="1"/>
+                    <field name="date_planned_finished" invisible="1"/>
+                    <field name="date_start" invisible="1"/>
+                    <field name="date_finished" invisible="1"/>
+                    <field name="duration_expected" invisible="1"/>
+                    <field name="duration" invisible="1"/>
+                    <field name="duration_unit" invisible="1"/>
+                    <field name="duration_percent" invisible="1"/>
+                    <field name="operation_id" invisible="1"/>
+                    <field name="costs_hour" invisible="1"/>
+                    <field name="next_work_order_id" invisible="1"/>
+                    <field name="production_date" invisible="1"/>
+                    <field name="production_state" invisible="1"/>
+                    <field name="working_state" invisible="1"/>
+                    <field name="create_uid" invisible="1"/>
+                    <div class="leas-tablet-header">
+                        <button name="prev_page" onclick="navigateBack()" class="btn" style="color: white; font-size: 2em;" icon="fa-arrow-left" />
+                        <button name="action_return_view_workorder" type="object" class="btn" style="color: white; font-size: 2em;" icon="fa-th-list" />
+                        <div class="title"><field name="code" readonly="1"/> / <field name="product_id" readonly="1"/></div>
+                    </div>
+
+                    <div class="leas-tablet-upper">
+                        <div class="sub-div">
+                            <h2>Operating</h2>
+                            <hr/>
+                            <div class="btn-container">
+                                <button name="button_reporting_start" type="object" string="Start" class="leas-btn-dark-success" attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>
+                                <button name="button_pending" type="object" string="Pause" class="leas-btn-dark-warning" attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+                                <button name="button_reporting_finish" type="object" string="Done" class="leas-btn-dark-success" attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+                                <button name="%(mrp.act_mrp_block_workcenter_wo)d" type="action" string="Block" context="{'default_workcenter_id': workcenter_id}" class="leas-btn-dark-danger" attrs="{'invisible': ['|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked')]}"/>
+                                <button name="button_unblock" type="object" string="Unblock" context="{'default_workcenter_id': workcenter_id}" class="leas-btn-dark-warning" attrs="{'invisible': ['|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '!=', 'blocked')]}"/>
+                                <button name="open_workorder_wizard" type="object" icon="fa-paper-plane" class="leas-btn-dark-default oe_edit_only" context="{'default_workcenter_id': workcenter_id}"/>
+                                <button name="action_toggleSidebar" string="SOP" class="leas-btn-dark-success" onclick="$('.leas-sop-sidebar').addClass('show');"/>
+                            </div>
+                        </div>
+                        <div class="sub-div">
+                            <h2>Order Information</h2>
+                            <hr/>
+                            <div class="column-container">
+                                <div class="column">
+                                    <div class="column-item">
+                                        <label for="name"/>
+                                        <div><field name="production_id" readonly="1"/> / <field name="name" readonly="1"/></div>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="workcenter_id"/>
+                                        <field name="workcenter_id" readonly="1"/>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="duration"/>
+                                        <field name="duration" widget="mrp_time_counter"  readonly="1"/>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="workorder_efficiency"/>
+                                        <field name="workorder_efficiency" widget="progressbar" readonly="1"/>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <div class="column-item">
+                                        <label for="state"/>
+                                        <field name="state" readonly="1"/>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="date_planned_start"/>
+                                            <field name="date_planned_start" widget="date" readonly="True"/>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="date_planned_finished"/>
+                                        <field name="date_planned_finished" widget="date" readonly="True"/>
+                                    </div>
+                                    <div class="column-item">
+                                        <label for="duration_expected"/>
+                                        <field name="duration_expected" widget="float_time" readonly="1"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-div">
+                            <h2>Progress</h2>
+                            <hr/>
+                            <div class="column-container">
+                                <div class="column">
+                                    <div class="column-item">
+                                        <label for="wo_Proc_chart_data"/>
+                                        <field name="wo_Proc_chart_data" widget="leas_stacked"/>
+                                    </div>
+                                </div>
+
+                                <div class="column">
+                                    <div class="column-item">
+                                        <label for="mo_Proc_chart_data"/>
+                                        <field name="mo_Proc_chart_data" widget="leas_stackedHBar" options="{'width': 240, 'height': 150, 'show_catg': true}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="leas-tablet-lower">
+
+                        <div class="leas-tablet-lower-left">
+                            <div class="sub-div">
+                                <h2>Components</h2>
+                                <field name="move_raw_ids" readonly="1">
+                                    <tree>
+                                        <field name="state" invisible="1"/>
+                                        <field name="product_type" invisible="1"/>
+                                        <field name="product_id"/>
+                                        <field name="product_qty"/>
+                                        <field name="quantity_done"/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </div>
+
+                        <div class="leas-tablet-lower-right">
+                            <field name="thirty_daily_efficiency" widget="leas_echarts" options="{'dark': 1}"/>
+                        </div>
+                    </div>
+
+                    <div class="leas-sop-sidebar">
+                        <button name="action_toggleSidebar" icon="fa-times" class="leas-btn-dark-mini-warning" onclick="$('.leas-sop-sidebar').removeClass('show');"></button>
+                        <!-- 右侧抽屉内容 -->
+                        <field name="worksheet_type" invisible="1"/>
+                        <field name="worksheet" widget="pdf_viewer" attrs="{'invisible': [('worksheet_type', '!=', 'pdf')]}"/>
+                        <field name="worksheet_google_slide" widget="embed_viewer" attrs="{'invisible': [('worksheet_type', '!=', 'google_slide')]}"/>
+                        <div class="note" attrs="{'invisible': [('worksheet_type', '!=', 'text')]}">
+                            <field name="operation_note" attrs="{'invisible': [('worksheet_type', '!=', 'text')]}"/>
+                        </div>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_production_workorder_tree_editable_view_inherit_with_button" model="ir.ui.view">
+            <field name="name">mrp.production.work.order.tree.editable.inherit</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="code" optional="show" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='date_finished']" position="after">
+                    <field name="qty_remaining" optional="hide" readonly="1"/>
+                    <field name="qty_operation_avail" optional="show" readonly="1"/>
+                    <field name="qty_operation_wip" optional="show" readonly="1"/>
+                    <field name="qty_operation_comp" optional="show" readonly="1"/>
+                    <field name="reporting_point" optional="hide"/>
+                </xpath>
+                <xpath expr="//button[@name='button_start']" position="attributes">
+                    <attribute name="attrs">{'invisible': [(1,'=',1)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_start']" position="after">
+                    <button name="button_reporting_start" type="object" string="Start" class="btn-success"
+                  attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='button_finish']" position="attributes">
+                    <attribute name="attrs">{'invisible': [(1,'=',1)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_finish']" position="after">
+                    <button name="button_reporting_finish" type="object" string="Done" class="btn-success" attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_open_wizard']" position="after">
+                    <button type="object" name="action_mrp_workorder_view_form_tablet" class="btn btn-primary oe_kanban_action_button" icon="fa-tablet" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_production_workorder_form_view_inherit_with_reporting" model="ir.ui.view">
+            <field name="name">mrp.production.work.order.form.reporting</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='production_id']" position="after">
+                    <field name="code" readonly="1"/>
+                    <field name="qty_operation_avail" optional="show" readonly="1"/>
+                    <field name="qty_operation_wip" optional="show" readonly="1"/>
+                    <field name="qty_operation_comp" optional="show" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='loss_id']" position="after">
+                    <field name="workorder_state" invisible="1"/>
+                    <field name="qty_started" optional="show" attrs="{'readonly': [('workorder_state', '=', 'done')]}"/>
+                    <field name="qty_completed" optional="show" attrs="{'readonly': ['|', ('action_type', '!=', 'finish'), ('workorder_state', '=', 'done')]}"/>
+                    <field name="action_type" optional="show" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_reporting_operation_wizard" model="ir.ui.view">
+            <field name="name">Reporting Operation Wizard</field>
+            <field name="model">mrp.reporting.operation.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="action_type" invisible="1"/>
+                            <field name="workorder_id" readonly="1"/>
+                            <field name="workcenter_id" readonly="1"/>
+                            <field name="previous_rec" attrs="{'invisible': [('previous_rec', '=', False)]}"/>
+                            <field name="qty_operation_avail"/>
+                            <field name="qty_started" attrs="{'readonly': ['|', ('action_type', '!=', 'start'), ('previous_rec', '!=', False)]}"/>
+                            <field name="qty_completed" attrs="{'invisible': [('action_type', '!=', 'finish')]}"/>
+                        </group>
+                        <div class="alert alert-info" role="status" attrs="{'invisible': [('action_type', '!=', 'start')]}">
+                            <p>
+                            After filling in the "Started Quantity" (mandatory), the system will lock the quantity
+                            you have filled in. Other workers will only be able to produce the remaining quantity
+                            to avoid conflicts in production planning or confusion with raw materials.
+                            </p>
+                            <p>
+                            Once completed, the portion that was not completed as per the plan will be released.
+                            </p>
+                        </div>
+
+                        <div class="alert alert-info" role="status" attrs="{'invisible': [('action_type', '!=', 'finish')]}">
+                            <p>
+                            According to the actual situation, fill in the completed quantity. The remaining quantity
+                            will be released, and you can proceed with the production by starting again.
+                            </p>
+                        </div>
+
+                    </sheet>
+                    <footer>
+                        <button name="action_launch" string="Submit" type="object" class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="mrp_bom_form_view_inherit_operations" model="ir.ui.view">
+            <field name="name">mrp.bom.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='operation_ids']" position="replace">
+                    <field name="operation_ids" attrs="{'invisible': [('type','not in',('normal','phantom'))]}" groups="mrp.group_mrp_routings" context="{'bom_id_invisible': True, 'default_company_id': company_id, 'default_bom_id': id, 'tree_view_ref': 'mrp.mrp_routing_workcenter_bom_tree_view'}"
+                        widget="mrp_one2many_with_copy">
+                        <tree>
+                            <field name="sequence" widget="handle"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="name"/>
+                            <field name="workcenter_id"/>
+                            <field name="reporting_point"/>
+                            <field name="time_cycle"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

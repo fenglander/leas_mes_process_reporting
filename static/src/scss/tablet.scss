@@ -1,0 +1,317 @@
+.o_form_view.leas-tablet {
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+    overflow: auto;
+    height: 100%;
+    position: relative;
+}
+
+.leas-tablet-header {
+    display: flex;
+    background-color: #181818;
+    flex-wrap: wrap;
+
+    .title {
+        position: relative;
+        top: 5px;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        left: 20px;
+    }
+}
+
+.leas-tablet-upper {
+    display: flex;
+    background-color: #181818;
+    flex-wrap: wrap;
+}
+
+.leas-tablet-lower {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.leas-tablet-lower-left {
+    flex: 1;
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.leas-tablet-lower-left div h1,
+.leas-tablet-lower-left div h2,
+.leas-tablet-lower-left div h3,
+.leas-tablet-lower-left div h4,
+.leas-tablet-lower-left div h5,
+.leas-tablet-lower-left div h6, {
+  color: $o-community-color;
+}
+
+.leas-tablet-lower-left div h1,
+.leas-tablet-lower-left div h2,
+.leas-tablet-lower-left div h3,
+.leas-tablet-lower-left div h4,
+.leas-tablet-lower-left div h5,
+.leas-tablet-lower-left div h6, {
+  color: $o-community-color;
+}
+
+.leas-tablet-lower-right {
+    flex: 2;
+    padding: 10px;
+    flex-wrap: wrap;
+    background-color: #3F3758;
+}
+
+
+.sub-div {
+    flex: 1;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.sub-div hr {
+    border-color: #ffffff;
+}
+
+.sub-div h2 {
+    color: #807c88;
+}
+
+.sub-div h3 {
+    color: #ffffff;
+}
+
+.sub-div lable {
+    color: #ffffff;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.btn-container button {
+  margin: 0px 3px 6px;; /* 调整按钮之间间距 */
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.column-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex: 1 0 auto;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.column-item {
+    display: block;
+    margin-bottom: 5px;
+    min-width: 50px;
+    /* 根据需要调整最小宽度值 */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .o_form_label{
+        color: #ffffff;
+    }
+    span.o_field_widget {
+        color: #ffffff;
+        word-wrap: break-word;
+    }
+    .o_form_uri {
+        > span:first-child {
+            color: lighten($link-color, 35%);
+            filter: contrast(1.2);
+            text-decoration: underline;
+            &:hover {
+                color: lighten($link-color, 10%);
+            }
+        }
+    }
+
+    .o_progressbar .o_progressbar_value {
+        color: #ffffff;
+    }
+}
+
+
+
+.bottom-left {
+    flex: 1;
+    background-color: white;
+}
+
+.bottom-right {
+    flex: 2;
+    background-color: $o-community-color;
+}
+
+.pie-chart {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.leas-btn-dark-success {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid #15d08e;
+    background: #15d08e;
+}
+
+.leas-btn-dark-success:hover {
+    background: #fff;
+    color: #15d08e
+}
+
+.leas-btn-dark-warning {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid #f5384e;
+    background: #f5384e;
+}
+
+.leas-btn-dark-warning:hover {
+    background: #fff;
+    color: #f5384e
+}
+
+.leas-btn-dark-mini-warning {
+    min-width: 35px;
+    height: 30px;
+    color: #fff;
+    padding: 0px 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid #f5384e;
+    background: #f5384e;
+}
+
+.leas-btn-dark-mini-warning:hover {
+    background: #fff;
+    color: #f5384e
+}
+
+.leas-btn-dark-primary {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid $o-community-color;
+    background: $o-community-color;
+}
+
+.leas-btn-dark-primary:hover {
+    background: #fff;
+    color: $o-community-color
+}
+
+.leas-btn-dark-danger {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid $o-we-color-danger;
+    background: $o-we-color-danger;
+}
+
+.leas-btn-dark-danger:hover {
+    background: #fff;
+    color: $o-we-color-danger
+}
+
+.leas-btn-dark-default {
+    min-width: 130px;
+    height: 40px;
+    color: #ff0a78;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 2px solid white;
+    background: white;
+}
+
+.leas-btn-dark-default:hover {
+    background: #ff0a78;
+    color: white
+}
+
+.leas-sop-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 初始时将侧栏隐藏在右侧 */
+    width: 100%;
+    height: 100%;
+    background-color: #181818;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease; /* 添加过渡效果 */
+    z-index: 9999;
+
+    .o_field_pdfviewer {
+        height: 96%;
+    }
+
+    .note {
+        background: #F4F2F7;
+        margin-top: 10px;
+        padding: 10px;
+        height: 96%;
+    }
+
+}
+
+.leas-sop-sidebar.show {
+    right: 0; /* 打开侧栏时显示在视图中 */
+}

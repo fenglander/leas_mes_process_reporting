@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="mrp_workcenter_productivity_tree_relat" model="ir.ui.view">
+            <field name="name">mrp.workcenter.productivity.tree.relate</field>
+            <field name="model">mrp.workcenter.productivity</field>
+            <field name="inherit_id" ref="mrp.oee_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='loss_id']" position="after">
+                    <field name="workorder_state" invisible="1"/>
+                    <field name="qty_started" optional="show" attrs="{'readonly': [('workorder_state', 'in', ['done', 'cancel'])]}"/>
+                    <field name="qty_completed" optional="show" attrs="{'readonly': ['|', ('action_type', '!=', 'finish'), ('workorder_state', 'in', ['done', 'cancel'])]}"/>
+                    <field name="action_type" optional="show" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
