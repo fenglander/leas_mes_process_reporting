@@ -64,11 +64,11 @@ Before using this plugin, make sure you have installed and activated the Manufac
 - [ ] Serial Number Reporting
 
 ### Bug Tracker
-Bugs are tracked on [GitHub Issues](https://github.com/fenglander/leas_mes_process_reporting/issues>)  
+Bugs are tracked on [GitHub Issues](https://github.com/fenglander/leas_mes_process_reporting/issues)  
 If you encounter an issue, please check here to see if your problem has already been reported.  
 If you are the first to discover the issue, please help us resolve it by providing detailed information.
 
 ### Contributors & Maintainers
 
-* Fung <[32664699@qq.com](32664699@qq.com)>
+* Fung
 
